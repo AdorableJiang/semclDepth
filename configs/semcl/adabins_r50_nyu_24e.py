@@ -3,7 +3,7 @@ _base_ = [
     '../_base_/default_runtime.py', '../_base_/schedules/schedule_24x.py'
 ]
 
-norm_cfg = dict(type='BN', requires_grad=True)
+norm_cfg = dict(type='SyncBN', requires_grad=True)
 
 model = dict(
     pretrained=None, # cannot directly use `https://dl.fbaipublicfiles.com/moco-v3/r-50-1000ep/r-50-1000ep.pth.tar` since the base_encoder is not extracted. Do that via semcl2bkb.py
@@ -32,7 +32,6 @@ data = dict(
 )
 
 find_unused_parameters=True
-# SyncBN=True
 
 # runtime
 evaluation = dict(interval=1)
