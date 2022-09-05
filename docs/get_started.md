@@ -14,15 +14,18 @@ You can simply follow our settings:
 
 Use Anaconda to create a conda environment:
 
-```shell
-conda create -n MDE python=3.7
-conda activate MDE
+```bash
+conda create -n dep python=3.8
+conda activate dep
 ```
 
-Install Pytorch:
-```shell
-conda install pytorch==1.8.0 torchvision==0.9.0 torchaudio==0.8.0 cudatoolkit=11.1 -c pytorch -c conda-forge
+#### Pytorch
+
+```bash
+conda install pytorch torchvision torchaudio cudatoolkit=11.1 -c pytorch-lts -c conda-forge
 ```
+
+#### mmcv-full
 
 Then, install MMCV and install our toolbox:
 
@@ -34,17 +37,14 @@ pip install -e . # probably need root privilege
 ```
 
 If training, you should install the tensorboard:
+
 ```shell
 pip install future tensorboard
 ```
 
-### **If you have a different environment**,
-You only need to install PyTorch and MMCV (1.3.1<= version <=1.4.0) correspondingly, and then build our codebase:
-```
-git clone https://github.com/zhyever/Monocular-Depth-Estimation-Toolbox.git
-cd Monocular-Depth-Estimation-Toolbox
-pip install -e .
-```
+#### pytorch3d
+
+
 
 Recently, I have tested our codes based on mmcv==1.5.0, which also works.
 
