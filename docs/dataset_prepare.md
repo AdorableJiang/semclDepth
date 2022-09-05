@@ -49,10 +49,14 @@ monocular-depth-estimation-toolbox
 │   │   │   ├── test
 │   │   │   ├── train
 │   │   │   ├── val
-│   │   ├── disparity_trainvaltest
-│   │   │   ├── disparity
-│   │   ├── leftImg8bit_trainvaltest
-│   │   │   ├── leftImg8bit
+│   │   ├── disparity
+│   │   │   ├── test
+│   │   │   ├── train
+│   │   │   ├── val
+│   │   ├── leftImg8bit
+│   │   │   ├── test
+│   │   │   ├── train
+│   │   │   ├── val
 │   │   ├── split_file.txt
 │   ├── cityscapesExtra
 │   │   ├── camera

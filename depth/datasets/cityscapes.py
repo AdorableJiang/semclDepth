@@ -36,16 +36,14 @@ class CSDataset(Dataset):
         │   │   │   ├── train
         │   │   │   ├── val
         │   │   │   ├── test
-        |   │   ├── disparity_trainvaltest
-        │   │   │   ├── disparity
-        |   |   |   |   ├── train
-        │   │   │   |   ├── val
-        │   │   │   |   ├── test
-        |   |   ├── leftImg8bit_trainvaltest
-        │   │   │   ├── leftImg8bit
-        |   |   |   |   ├── train
-        │   │   │   |   ├── val
-        │   │   │   |   ├── test
+        │   │   ├── disparity
+        |   |   |   ├── train
+        │   │   │   ├── val
+        │   │   │   ├── test
+        │   │   ├── leftImg8bit
+        |   |   |   ├── train
+        │   │   │   ├── val
+        │   │   │   ├── test
 
     split file format:
     input_image: leftImg8bit/train/aachen/aachen_000000_000019_leftImg8bit.png  
@@ -98,9 +96,9 @@ class CSDataset(Dataset):
             if not (self.split is None or osp.isabs(self.split)):
                 self.split = osp.join(self.data_root, self.split)
             if not (self.img_dir is None or osp.isabs(self.img_dir)):
-                self.img_dir = osp.join(self.data_root, self.img_dir)
+                self.img_dir = self.data_root
             if not (self.ann_dir is None or osp.isabs(self.ann_dir)):
-                self.ann_dir = osp.join(self.data_root, self.ann_dir)
+                self.ann_dir = self.data_root
             if not (self.cam_dir is None or osp.isabs(self.cam_dir)):
                 self.cam_dir = osp.join(self.data_root, self.cam_dir)
 
