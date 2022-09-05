@@ -25,12 +25,12 @@ conda install pytorch==1.8.0 torchvision==0.9.0 torchaudio==0.8.0 cudatoolkit=11
 ```
 
 Then, install MMCV and install our toolbox:
-```shell
-pip install mmcv-full==1.3.13 -f https://download.openmmlab.com/mmcv/dist/cu111/torch1.8.0/index.html
 
-git clone https://github.com/zhyever/Monocular-Depth-Estimation-Toolbox.git
-cd Monocular-Depth-Estimation-Toolbox
-pip install -e .
+```bash
+pip install mmcv-full==1.4.0 -f https://download.openmmlab.com/mmcv/dist/cu111/torch1.8.0/index.html
+
+# clone and enter this repo
+pip install -e . # probably need root privilege
 ```
 
 If training, you should install the tensorboard:
