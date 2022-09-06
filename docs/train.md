@@ -19,7 +19,7 @@ evaluation = dict(interval=2)  # This evaluate the model per 2 epoches.
 official support:
 
 ```bash
-sh tools/dist_train.sh ${CONFIG_FILE} 1 [optional arguments]
+bash tools/dist_train.sh ${CONFIG_FILE} 1 [optional arguments]
 ```
 
 experimental support (you may need to set PYTHONPATH):
@@ -47,7 +47,7 @@ The process of training on the CPU is consistent with single GPU training. We ju
 ### Train with multiple GPUs
 
 ```bash
-sh tools/dist_train.sh ${CONFIG_FILE} ${GPU_NUM} [optional arguments]
+bash tools/dist_train.sh ${CONFIG_FILE} ${GPU_NUM} [optional arguments]
 ```
 
 Optional arguments are:
@@ -84,8 +84,8 @@ If you launch multiple jobs on a single machine, e.g., 2 jobs of 4-GPU training 
 If you use `dist_train.sh` to launch training jobs, you can set the port in commands with environment variable `PORT`.
 
 ```bash
-CUDA_VISIBLE_DEVICES=0,1,2,3 PORT=29500 sh tools/dist_train.sh ${CONFIG_FILE} 4
-CUDA_VISIBLE_DEVICES=4,5,6,7 PORT=29501 sh tools/dist_train.sh ${CONFIG_FILE} 4
+CUDA_VISIBLE_DEVICES=0,1,2,3 PORT=29500 bash tools/dist_train.sh ${CONFIG_FILE} 4
+CUDA_VISIBLE_DEVICES=4,5,6,7 PORT=29501 bash tools/dist_train.sh ${CONFIG_FILE} 4
 ```
 
 ## Train with multiple machines
@@ -95,13 +95,13 @@ If you launch with multiple machines simply connected with ethernet, you can sim
 On the first machine:
 
 ```bash
-NNODES=2 NODE_RANK=0 PORT=$MASTER_PORT MASTER_ADDR=$MASTER_ADDR sh tools/dist_train.sh $CONFIG $GPUS
+NNODES=2 NODE_RANK=0 PORT=$MASTER_PORT MASTER_ADDR=$MASTER_ADDR bash tools/dist_train.sh $CONFIG $GPUS
 ```
 
 On the second machine:
 
 ```bash
-NNODES=2 NODE_RANK=1 PORT=$MASTER_PORT MASTER_ADDR=$MASTER_ADDR sh tools/dist_train.sh $CONFIG $GPUS
+NNODES=2 NODE_RANK=1 PORT=$MASTER_PORT MASTER_ADDR=$MASTER_ADDR bash tools/dist_train.sh $CONFIG $GPUS
 ```
 
 Usually it is slow if you do not have high speed networking like InfiniBand.
@@ -113,13 +113,13 @@ Slurm is a good job scheduling system for computing clusters. On a cluster manag
 Train with multiple machines:
 
 ```bash
-[GPUS=${GPUS}] sh tools/slurm_train.sh ${PARTITION} ${JOB_NAME} ${CONFIG_FILE} --work-dir ${WORK_DIR}
+[GPUS=${GPUS}] bash tools/slurm_train.sh ${PARTITION} ${JOB_NAME} ${CONFIG_FILE} --work-dir ${WORK_DIR}
 ```
 
 Here is an example of using 16 GPUs to train DepthFormer on the dev partition.
 
 ```bash
-GPUS=16 sh tools/slurm_train.sh dev depthformer configs/depthformer/depthformer_swint_w7_nyu.py --work-dir work_dirs/saves/depthformer/depthformer_swint_w7_nyu
+GPUS=16 bash tools/slurm_train.sh dev depthformer configs/depthformer/depthformer_swint_w7_nyu.py --work-dir work_dirs/saves/depthformer/depthformer_swint_w7_nyu
 ```
 
 When using 'slurm_train.sh' to start multiple tasks on a node, different ports need to be specified. Three settings are provided:
@@ -141,8 +141,8 @@ dist_params = dict(backend='nccl', port=29501)
 Then you can launch two jobs with config1.py and config2.py.
 
 ```bash
-CUDA_VISIBLE_DEVICES=0,1,2,3 GPUS=4 sh tools/slurm_train.sh ${PARTITION} ${JOB_NAME} config1.py tmp_work_dir_1
-CUDA_VISIBLE_DEVICES=4,5,6,7 GPUS=4 sh tools/slurm_train.sh ${PARTITION} ${JOB_NAME} config2.py tmp_work_dir_2
+CUDA_VISIBLE_DEVICES=0,1,2,3 GPUS=4 bash tools/slurm_train.sh ${PARTITION} ${JOB_NAME} config1.py tmp_work_dir_1
+CUDA_VISIBLE_DEVICES=4,5,6,7 GPUS=4 bash tools/slurm_train.sh ${PARTITION} ${JOB_NAME} config2.py tmp_work_dir_2
 ```
 
 Option 2:
@@ -150,8 +150,8 @@ Option 2:
 You can set different communication ports without the need to modify the configuration file, but have to set the `cfg-options` to overwrite the default port in configuration file.
 
 ```bash
-CUDA_VISIBLE_DEVICES=0,1,2,3 GPUS=4 sh tools/slurm_train.sh ${PARTITION} ${JOB_NAME} config1.py tmp_work_dir_1 --cfg-options dist_params.port=29500
-CUDA_VISIBLE_DEVICES=4,5,6,7 GPUS=4 sh tools/slurm_train.sh ${PARTITION} ${JOB_NAME} config2.py tmp_work_dir_2 --cfg-options dist_params.port=29501
+CUDA_VISIBLE_DEVICES=0,1,2,3 GPUS=4 bash tools/slurm_train.sh ${PARTITION} ${JOB_NAME} config1.py tmp_work_dir_1 --cfg-options dist_params.port=29500
+CUDA_VISIBLE_DEVICES=4,5,6,7 GPUS=4 bash tools/slurm_train.sh ${PARTITION} ${JOB_NAME} config2.py tmp_work_dir_2 --cfg-options dist_params.port=29501
 ```
 
 Option 3:
@@ -159,8 +159,8 @@ Option 3:
 You can set the port in the command using the environment variable 'MASTER_PORT':
 
 ```bash
-CUDA_VISIBLE_DEVICES=0,1,2,3 GPUS=4 MASTER_PORT=29500 sh tools/slurm_train.sh ${PARTITION} ${JOB_NAME} config1.py tmp_work_dir_1
-CUDA_VISIBLE_DEVICES=4,5,6,7 GPUS=4 MASTER_PORT=29501 sh tools/slurm_train.sh ${PARTITION} ${JOB_NAME} config2.py tmp_work_dir_2
+CUDA_VISIBLE_DEVICES=0,1,2,3 GPUS=4 MASTER_PORT=29500 bash tools/slurm_train.sh ${PARTITION} ${JOB_NAME} config1.py tmp_work_dir_1
+CUDA_VISIBLE_DEVICES=4,5,6,7 GPUS=4 MASTER_PORT=29501 bash tools/slurm_train.sh ${PARTITION} ${JOB_NAME} config2.py tmp_work_dir_2
 ```
 
 ## Runtime Logs
