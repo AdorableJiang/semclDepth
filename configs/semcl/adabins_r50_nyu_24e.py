@@ -30,11 +30,12 @@ model = dict(
     )
 
 data = dict(
-    samples_per_gpu=16,
-    workers_per_gpu=8,
+    samples_per_gpu=8, # batchsize=16 on a dual-gpu node
+    workers_per_gpu=2,
 )
 
 find_unused_parameters=True
+SyncBN=True
 
 # runtime
 evaluation = dict(interval=1)
