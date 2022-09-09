@@ -49,7 +49,7 @@ pip install future tensorboard
 
 ### pytorch3d
 
-When reproducing Adabins, [Pytorch3d](https://github.com/facebookresearch/pytorch3d) is needed to calculate the chamfer loss. 
+When reproducing Adabins, [Pytorch3d](https://github.com/facebookresearch/pytorch3d) is needed to calculate the chamfer loss.
 
 ```bash
 conda install -c fvcore -c iopath -c conda-forge fvcore iopath
