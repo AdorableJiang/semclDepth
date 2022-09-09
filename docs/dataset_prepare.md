@@ -99,10 +99,10 @@ Some methods may use the camera intrinsic parameters (*i.e.,* BTS), you need to 
 
 ## **NYU**
 
-Following previous work, I utilize about 50K image-depth pairs as our training set and standard 652 images as the validation set. You can download the subset with the help of codes provided in [BTS](https://github.com/cleinc/bts/tree/master/pytorch).
+Following previous work, I utilize about 50K image-depth pairs as our training set and standard 652 images as the validation set. You can download the subset with the help of codes provided in [BTS](https://github.com/AdorableJiang/bts).
 
 ```bash
-git clone https://github.com/cleinc/bts.git
+git clone https://github.com/AdorableJiang/bts.git
 cd bts
 python utils/download_from_gdrive.py 1AysroWpfISmm-yRFGBgFTrLy6FjQwvwP sync.zip
 unzip sync.zip
@@ -110,9 +110,22 @@ unzip sync.zip
 
 Also, you can download it from following link: <https://drive.google.com/file/d/1AysroWpfISmm-yRFGBgFTrLy6FjQwvwP/view?usp=sharing>
 
-Then, you need to download the standard test set from this [link](https://cs.nyu.edu/~silberman/datasets/nyu_depth_v2.html). (**Note**: The downloaded file will be unzipped to folder test and train. You need to cut the files in the test folder out to data/nyu, organizing the directory structure following the file trees provided on the top of this page.)
+Then, extract standard test set. Download the original [Labeled dataset (~2.8 GB)](http://horatio.cs.nyu.edu/mit/silberman/nyu_depth_v2/nyu_depth_v2_labeled.mat) from [NYU Depth V2 Nathan Silberman](https://cs.nyu.edu/~silberman/datasets/nyu_depth_v2.html).
 
-Finally, copy nyu_train.txt and nyu_test.txt from `splits/` folder to `data/nyu/`.
+```bash
+cd utils # bts/utils
+python extract_official_train_test_set_from_mat.py /path/to/nyu_depth_v2_labeled.mat splits.mat <out_folder>
+
+# Finally, move everything under <out_folder>/test to unzipped training set
+cp -r <out_folder>/test/* /path/to/unzipped/training/set/
+```
+
+Finally, copy nyu_train.txt and nyu_test.txt from `splits/` folder to `/path/to/unzipped/training/set/`. There should be 302 items (300 folders + 2 `.txt` files) under the complete training+test sets.
+
+```bash
+$ ls /path/to/complete/nyudataset/ | wc -l
+302
+```
 
 ## **SUNRGBD**
 
