@@ -34,6 +34,14 @@ data = dict(
     workers_per_gpu=2,
 )
 
+log_config = dict(
+    _delete_=True,
+    interval=50,
+    hooks=[
+        dict(type='TextLoggerHook', by_epoch=False),
+        dict(type='TensorboardLoggerHook')
+    ])
+
 find_unused_parameters=True
 SyncBN=True
 
