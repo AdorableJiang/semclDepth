@@ -44,18 +44,5 @@ More information about installation can be found in docs of MMSegmentation (see 
 If training, you should install the tensorboard:
 
 ```shell
-pip install future tensorboard
+conda install future tensorboard -c conda-forge
 ```
-
-### pytorch3d
-
-When reproducing Adabins, [Pytorch3d](https://github.com/facebookresearch/pytorch3d) is needed to calculate the chamfer loss.
-
-```bash
-conda install -c fvcore -c iopath -c conda-forge fvcore iopath
-conda install -c bottler nvidiacub
-conda install cuda -c nvidia
-pip install "git+https://github.com/facebookresearch/pytorch3d.git@stable"
-```
-
-Please follow [pytorch3d/INSTALL.md](https://github.com/facebookresearch/pytorch3d/blob/main/INSTALL.md#installation) if you have problem installing `Pytorch3d`.
