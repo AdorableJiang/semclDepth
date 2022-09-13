@@ -15,12 +15,7 @@ train_pipeline = [
     dict(type='ColorAug', prob=1, gamma_range=[0.9, 1.1], brightness_range=[0.9, 1.1], color_range=[0.9, 1.1]),
     dict(type='Normalize', **img_norm_cfg),
     dict(type='DefaultFormatBundle'),
-    dict(type='Collect', 
-         keys=['img', 'depth_gt'], 
-         meta_keys=('filename', 'ori_filename', 'ori_shape',
-                    'img_shape', 'pad_shape', 'scale_factor', 
-                    'flip', 'flip_direction', 'img_norm_cfg',
-                    'cam_intrinsic')),
+    dict(type='Collect', keys=['img', 'depth_gt']),
 ]
 test_pipeline = [
     dict(type='LoadImageFromFile'),
@@ -35,12 +30,7 @@ test_pipeline = [
             dict(type='RandomFlip', direction='horizontal'),
             dict(type='Normalize', **img_norm_cfg),
             dict(type='ImageToTensor', keys=['img']),
-            dict(type='Collect', 
-                 keys=['img'], 
-                meta_keys=('filename', 'ori_filename', 'ori_shape',
-                            'img_shape', 'pad_shape', 'scale_factor', 
-                            'flip', 'flip_direction', 'img_norm_cfg',
-                            'cam_intrinsic')),
+            dict(type='Collect', keys=['img']),
         ])
 ]
 data = dict(
