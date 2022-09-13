@@ -176,7 +176,11 @@ class CSDataset(Dataset):
         results['img_prefix'] = self.img_dir
         results['depth_prefix'] = self.ann_dir
         results['camera_prefix'] = self.cam_dir
-
+        # train/test share the same cam param
+        results['cam_intrinsic'] = \
+            [[2262.52, 0, 1096.98],
+             [0, 2265.3017905988554, 513.137],
+             [0, 0, 1]]
         results['depth_scale'] = self.depth_scale
 
     def __getitem__(self, idx):
