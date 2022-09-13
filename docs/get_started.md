@@ -31,7 +31,7 @@ conda install pytorch torchvision torchaudio cudatoolkit=11.1 -c pytorch-lts -c 
 Then, install MMCV and install our toolbox:
 
 ```bash
-conda install requests attrs webencodings future tensorboard -c conda-forge
+conda install requests attrs webencodings future tensorboard matplotlib kiwisolver -c conda-forge
 pip install mmcv-full==1.4.0 -f https://download.openmmlab.com/mmcv/dist/cu111/torch1.8.0/index.html
 
 # clone and enter this repo
