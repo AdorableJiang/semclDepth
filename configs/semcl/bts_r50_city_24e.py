@@ -1,6 +1,6 @@
 _base_ = [
     '../_base_/models/bts.py', 
-    '../_base_/datasets/cityscapes.py',
+    '../_base_/datasets/cityscapes_semcl.py',
     '../_base_/default_runtime.py', 
     '../_base_/schedules/schedule_24x.py'
 ]
@@ -21,29 +21,9 @@ model = dict(
             type='SigLoss', valid_mask=True, loss_weight=1.0)),
     )
 
-train_pipeline = [
-    dict(type='Collect', 
-         meta_keys=('filename', 'ori_filename', 'ori_shape',
-                    'img_shape', 'pad_shape', 'scale_factor', 
-                    'flip', 'flip_direction', 'img_norm_cfg',
-                    'cam_intrinsic')),
-]
-test_pipeline = [
-    dict(type='Collect', 
-        meta_keys=('filename', 'ori_filename', 'ori_shape',
-            'img_shape', 'pad_shape', 'scale_factor', 
-            'flip', 'flip_direction', 'img_norm_cfg',
-            'cam_intrinsic')),
-]
 data = dict(
     samples_per_gpu=8, # batchsize=16 on a dual-gpu node
     workers_per_gpu=8,
-    train=dict(
-        pipeline=train_pipeline,
-    ),
-    val=dict(
-        pipeline=test_pipeline,
-    )
 )
 
 # find_unused_parameters=True

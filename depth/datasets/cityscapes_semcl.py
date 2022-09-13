@@ -24,7 +24,7 @@ import json
 
 
 @DATASETS.register_module()
-class CSDataset(Dataset):
+class CSsemclDataset(Dataset):
     """CityScapes dataset for depth estimation. An example of file structure
     is as followed.
     .. code-block:: none
