@@ -31,6 +31,7 @@ conda install pytorch torchvision torchaudio cudatoolkit=11.1 -c pytorch-lts -c 
 Then, install MMCV and install our toolbox:
 
 ```bash
+conda install requests attrs webencodings future tensorboard -c conda-forge
 pip install mmcv-full==1.4.0 -f https://download.openmmlab.com/mmcv/dist/cu111/torch1.8.0/index.html
 
 # clone and enter this repo
@@ -40,9 +41,3 @@ pip install -e . # probably need root privilege
 Recently, I have tested our codes based on mmcv==1.5.0, which also works.
 
 More information about installation can be found in docs of MMSegmentation (see [get_started.md](https://github.com/open-mmlab/mmsegmentation/blob/master/docs/en/get_started.md#installation)).
-
-If training, you should install the tensorboard:
-
-```shell
-conda install future tensorboard -c conda-forge
-```
