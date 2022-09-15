@@ -16,7 +16,7 @@ model = dict(
     decode_head=dict(
         final_norm=False,
         min_depth=1e-3,
-        max_depth=80, # this is dataset decided, use 80 as in kitti
+        max_depth=200, # this is dataset decided, use 200 as in https://github.com/zhyever/Monocular-Depth-Estimation-Toolbox/blob/9e490dda2940480cbedbf2893065b1e040691677/configs/_base_/datasets/cityscapes.py#L51
         loss_decode=dict(
             type='SigLoss', valid_mask=True, loss_weight=1.0)),
     )
@@ -66,7 +66,17 @@ data = dict(
     )
 )
 
-# find_unused_parameters=True
+# optimizer
+max_lr=1e-4
+optimizer = dict(type='AdamW', lr=max_lr, betas=(0.95, 0.99), weight_decay=0.01,)
+# learning policy
+lr_config = dict(
+    policy='OneCycle',
+    max_lr=max_lr,
+    div_factor=25,
+    final_div_factor=100,
+    by_epoch=False,
+)
 
 # runtime
 evaluation = dict(
