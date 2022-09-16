@@ -27,7 +27,7 @@ model = dict(
         loss_decode=dict(type='SigLoss', valid_mask=True, loss_weight=10),
         with_loss_chamfer=False, # do not use chamfer loss
         loss_chamfer=dict(type='BinsChamferLoss', loss_weight=1e-1),
-        classify=True, # class embedding
+        classify=False, # class embedding
         loss_class=dict(type='CrossEntropyLoss', loss_weight=1e-2),
         norm_cfg=dict(type='SyncBN', requires_grad=True),
         transformer_encoder=dict( # default settings
@@ -67,7 +67,7 @@ model = dict(
                     ffn_drop=0.0),
                 operation_order=('cross_attn', 'norm', 'self_attn', 'norm', 'ffn', 'norm')))),
     train_cfg=dict(
-        aux_loss = True,
+        aux_loss = False,
         aux_index = [2, 5],
         aux_weight = [1/4, 1/2]
     ),
@@ -91,7 +91,7 @@ train_pipeline = [
     dict(type='ColorAug', prob=1, gamma_range=[0.9, 1.1], brightness_range=[0.9, 1.1], color_range=[0.9, 1.1]),
     dict(type='Normalize', **img_norm_cfg),
     dict(type='DefaultFormatBundle'),
-    dict(type='Collect', keys=['img', 'depth_gt']),#, 'class_label'
+    dict(type='Collect', keys=['img', 'depth_gt']),
 ]
 test_pipeline = [
     dict(type='LoadImageFromFile'),
