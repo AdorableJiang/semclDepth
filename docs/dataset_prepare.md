@@ -89,9 +89,11 @@ monocular-depth-estimation-toolbox
 
 ## **KITTI**
 
-Download the official dataset from this [link](http://www.cvlibs.net/datasets/kitti/eval_depth.php?benchmark=depth_prediction), including the raw data (about 200G) and fine-grained ground-truth depth maps.
+Download
 
-Then, unzip the files into data/kitti. Remember to organizing the directory structure following instructions (Only need a few cut operations).
+1. `annotated depth maps data set (14 GB)` from [The KITTI Vision Benchmark Suite - Depth Prediction Evaluation](https://www.cvlibs.net/datasets/kitti/eval_depth.php?benchmark=depth_prediction). Copy all `*_sync` folders (under both `train/` and `val/`) to `gt_depth/`.
+2. `raw data (about 200G)` from [The KITTI Vision Benchmark Suite - raw data](https://www.cvlibs.net/datasets/kitti/raw_data.php). Copy everything to `input/`.
+3. `manually selected validation and test data sets (2 GB)` from [The KITTI Vision Benchmark Suite - Depth Prediction Evaluation](https://www.cvlibs.net/datasets/kitti/eval_depth.php?benchmark=depth_prediction). Copy `depth_selection/test_depth_prediction_anonymous/image/*` to `benchmark_test/`, and `depth_selection/test_depth_prediction_anonymous/intrinsics/*` to `benchmark_cam/`.
 
 Finally, copy split files (whose names are started with *kitti*) in splits folder into data/kitti. Here, I utilize eigen splits following other supervised methods.
 
