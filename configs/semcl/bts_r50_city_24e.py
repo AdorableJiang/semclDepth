@@ -89,4 +89,4 @@ evaluation = dict(
 
 # use dynamicscale, and initialize with 512. 
 # [已有模型 AMP 使用方法](https://zhuanlan.zhihu.com/p/375224982)
-fp16 = dict(loss_scale=dict(init_scale=512.,mode='dynamic'))  
+fp16 = dict(loss_scale='dynamic')
