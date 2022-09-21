@@ -76,7 +76,7 @@ class CSsemclDataset(Dataset):
                  garg_crop=True,
                  eigen_crop=False,
                  min_depth=1e-3,
-                 max_depth=80):
+                 max_depth=200):
 
         self.pipeline = Compose(pipeline)
         self.img_dir = img_dir
