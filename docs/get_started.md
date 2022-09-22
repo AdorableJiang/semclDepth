@@ -16,7 +16,7 @@ I ran experiments with PyTorch 1.8.2, CUDA 11.1, Python 3.8, and Ubuntu 20.04. O
 Use Anaconda to create a conda environment:
 
 ```bash
-conda create -n dep python=3.8
+conda create -n dep python=3.8 numpy=1.22.*
 conda activate dep
 ```
 
