@@ -5,14 +5,14 @@ _base_ = [
     '../_base_/schedules/schedule_24x.py'
 ]
 
-norm_cfg = dict(type='SyncBN', requires_grad=True)
 
+pretrained='../moco4semencontrast/pretrained/bkb_r-50-1000ep.pth.tar', # cannot directly use `https://dl.fbaipublicfiles.com/moco-v3/r-50-1000ep/r-50-1000ep.pth.tar` since the base_encoder is not extracted. Do that via semcl2bkb.py
 model = dict(
-    pretrained=None, # cannot directly use `https://dl.fbaipublicfiles.com/moco-v3/r-50-1000ep/r-50-1000ep.pth.tar` since the base_encoder is not extracted. Do that via semcl2bkb.py
-    # backbone=dict(
-    #     init_cfg=dict(
-    #         type='Pretrained', checkpoint='torchvision://resnet50'),
-    # ),
+    backbone=dict(
+        init_cfg=dict(
+            type='Pretrained', checkpoint=pretrained),
+        norm_cfg = dict(type='SyncBN', requires_grad=True)
+    ),
     decode_head=dict(
         final_norm=False,
         min_depth=1e-3,
@@ -37,7 +37,7 @@ lr_config = dict(
     final_div_factor=100,
     by_epoch=False,
 )
-
+checkpoint_config = dict(by_epoch=True, max_keep_ckpts=2)
 # runtime
 evaluation = dict(
     interval=1,

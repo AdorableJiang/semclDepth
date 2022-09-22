@@ -3,13 +3,12 @@ _base_ = [
     '../_base_/default_runtime.py', '../_base_/schedules/schedule_24x.py'
 ]
 
-norm_cfg = dict(type='SyncBN', requires_grad=True)
-
 pretrained='/home/quan/Documents/my_repo/moco4semencontrast/pretrained/bkb_r-50-1000ep.pth.tar'
 model = dict(
     backbone=dict(
         init_cfg=dict(
             type='Pretrained', checkpoint=pretrained),
+        norm_cfg = dict(type='SyncBN', requires_grad=True)
     ),
     decode_head=dict(
         final_norm=False,
@@ -35,7 +34,7 @@ lr_config = dict(
     final_div_factor=100,
     by_epoch=False,
 )
-
+checkpoint_config = dict(by_epoch=True, max_keep_ckpts=2)
 # runtime
 evaluation = dict(
     interval=1,
