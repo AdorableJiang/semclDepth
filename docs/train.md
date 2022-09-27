@@ -104,7 +104,7 @@ On the second machine:
 NNODES=2 NODE_RANK=1 PORT=$MASTER_PORT MASTER_ADDR=$MASTER_ADDR bash tools/dist_train.sh $CONFIG $GPUS
 ```
 
-Usually it is slow if you do not have high speed networking like InfiniBand.
+Usually it is slow if you do not have high speed networking like InfiniBand. Note that `--work-dir` should be a common place writable for all nodes.
 
 ## Manage jobs with Slurm
 
