@@ -13,7 +13,10 @@ model = dict(
         drop_path_rate=0.3,
         patch_norm=True,
         pretrain_style='official',
-        init_cfg='https://github.com/SwinTransformer/storage/releases/download/v1.0.8/swin_tiny_patch4_window7_224_22k.pth',),
+        norm_cfg = dict(type='SyncBN', requires_grad=True),
+        init_cfg=dict(
+            type='Pretrained', checkpoint='https://github.com/SwinTransformer/storage/releases/download/v1.0.8/swin_tiny_patch4_window7_224_22k.pth'),
+    ),
     decode_head=dict(
         type='BinsFormerDecodeHead',
         class_num=25,
