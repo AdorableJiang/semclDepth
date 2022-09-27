@@ -5,7 +5,6 @@ _base_ = [
 ]
 
 model = dict(
-    pretrained='https://github.com/SwinTransformer/storage/releases/download/v1.0.8/swin_tiny_patch4_window7_224_22k.pth',
     backbone=dict(
         embed_dims=96,
         depths=[2, 2, 6, 2],
@@ -14,7 +13,8 @@ model = dict(
         use_abs_pos_embed=False,
         drop_path_rate=0.3,
         patch_norm=True,
-        pretrain_style='official'),
+        pretrain_style='official',
+        init_cfg='https://github.com/SwinTransformer/storage/releases/download/v1.0.8/swin_tiny_patch4_window7_224_22k.pth',),
     decode_head=dict(
         type='BinsFormerDecodeHead',
         class_num=25,
@@ -44,8 +44,9 @@ model = dict(
                         embed_dims=256, 
                         num_levels=3, 
                         num_points=8),
-                    feedforward_channels=1024,
-                    ffn_dropout=0.1,
+                    ffn_cfgs=dict(
+                        feedforward_channels=1024,
+                        ffn_dropout=0.1,),
                     operation_order=('self_attn', 'norm', 'ffn', 'norm')))),
         positional_encoding=dict(
             type='SinePositionalEncoding', num_feats=128, normalize=True),
