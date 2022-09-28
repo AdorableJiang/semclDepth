@@ -52,6 +52,7 @@ model = dict(
                         num_levels=3, 
                         num_points=8),
                     ffn_cfgs=dict(
+                        embed_dims=256, 
                         feedforward_channels=1024,
                         ffn_drop=0.1,),
                     operation_order=('self_attn', 'norm', 'ffn', 'norm')))),
