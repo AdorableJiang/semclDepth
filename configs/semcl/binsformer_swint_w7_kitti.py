@@ -44,8 +44,10 @@ model = dict(
                         embed_dims=256, 
                         num_levels=3, 
                         num_points=8),
-                    feedforward_channels=1024,
-                    ffn_dropout=0.1,
+                    ffn_cfgs=dict(
+                        embed_dims=256, 
+                        feedforward_channels=1024,
+                        ffn_drop=0.1,),
                     operation_order=('self_attn', 'norm', 'ffn', 'norm')))),
         positional_encoding=dict(
             type='SinePositionalEncoding', num_feats=128, normalize=True),
