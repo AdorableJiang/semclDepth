@@ -68,7 +68,7 @@ model = dict(
                     ffn_drop=0.0),
                 operation_order=('cross_attn', 'norm', 'self_attn', 'norm', 'ffn', 'norm')))),
     train_cfg=dict(
-        aux_loss = False,
+        aux_loss = True,
         aux_index = [2, 5],
         aux_weight = [1/4, 1/2]
     ),
