@@ -4,7 +4,7 @@ _base_ = [
     '../_base_/default_runtime.py', 
 ]
 
-pretrained='../moco4semencontrast/pretrained/bkb_r-50-1000ep.pth.tar', # cannot directly use `https://dl.fbaipublicfiles.com/moco-v3/r-50-1000ep/r-50-1000ep.pth.tar` since the base_encoder is not extracted. Do that via semcl2bkb.py
+pretrained='../moco4semencontrast/pretrained/bkb_r-50-1000ep.pth.tar' # cannot directly use `https://dl.fbaipublicfiles.com/moco-v3/r-50-1000ep/r-50-1000ep.pth.tar` since the base_encoder is not extracted. Do that via semcl2bkb.py
 model = dict(
     backbone=dict(
         _delete_=True,
