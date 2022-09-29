@@ -2,6 +2,7 @@ import json
 import mmcv
 import numpy as np
 import os.path as osp
+import sys
 from PIL import Image
 from ..builder import PIPELINES
 
@@ -22,7 +23,7 @@ class LoadKITTICamIntrinsic(object):
 
         # raw input
         if 'input' in  results['img_prefix']:
-            date = results['filename'].split('/')[-5]
+            date = results['filename'].split('/' if sys.platform=='linux' else '\\')[-5]
             results['cam_intrinsic'] = results['cam_intrinsic_dict'][date]
         # benchmark test
         else:

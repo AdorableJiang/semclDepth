@@ -1,5 +1,6 @@
 from logging import raiseExceptions
 import os.path as osp
+import sys
 import warnings
 from collections import OrderedDict
 from functools import reduce
@@ -117,11 +118,13 @@ class KITTIDataset(Dataset):
                     img_info = dict()
                     if ann_dir is not None: # benchmark test or unsupervised future
                         depth_map = line.strip().split(" ")[1]
+                        if sys.platform=='win32': depth_map=osp.normpath(depth_map) # paths in the split .txt files are in linux format, convert if necessary
                         if depth_map == 'None':
                             self.invalid_depth_num += 1
                             continue
                         img_info['ann'] = dict(depth_map=depth_map)
                     img_name = line.strip().split(" ")[0]
+                    if sys.platform=='win32': img_name=osp.normpath(img_name) # paths in the split .txt files are in linux format, convert if necessary
                     img_info['filename'] = img_name
                     img_infos.append(img_info)
         else:
