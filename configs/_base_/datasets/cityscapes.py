@@ -29,7 +29,7 @@ test_pipeline = [
         transforms=[
             dict(type='RandomFlip', direction='horizontal'),
             dict(type='Normalize', **img_norm_cfg),
-            dict(type='ImageToTensor', keys=['img']),
+            dict(type='DefaultFormatBundle'),
             dict(type='Collect', keys=['img']),
         ])
 ]

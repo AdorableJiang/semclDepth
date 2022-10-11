@@ -31,7 +31,7 @@ test_pipeline = [
         transforms=[
             dict(type='RandomFlip', direction='horizontal'),
             dict(type='Normalize', **img_norm_cfg),
-            dict(type='ImageToTensor', keys=['img']),
+            dict(type='DefaultFormatBundle'),
             dict(type='Collect', 
                  keys=['img'],
                  meta_keys=('filename', 'ori_filename', 'ori_shape',
@@ -46,7 +46,7 @@ eval_pipeline = [
     dict(type='LoadImageFromFile'),
     dict(type='RandomFlip', prob=0.0), # set to zero
     dict(type='Normalize', **img_norm_cfg),
-    dict(type='ImageToTensor', keys=['img']),
+    dict(type='DefaultFormatBundle'),
     dict(type='Collect', 
          keys=['img'],
          meta_keys=('filename', 'ori_filename', 'ori_shape',
