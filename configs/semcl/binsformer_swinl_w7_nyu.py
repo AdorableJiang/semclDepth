@@ -1,6 +1,5 @@
 _base_ = [
     '../_base_/models/binsformer.py',
-    '../_base_/datasets/kitti.py',
     '../_base_/default_runtime.py', 
 ]
 
