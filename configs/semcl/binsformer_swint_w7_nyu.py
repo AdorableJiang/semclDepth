@@ -153,7 +153,7 @@ data = dict(
 
 # AdamW optimizer, no weight decay for position embedding & layer norm
 # in backbone
-max_lr = 1e-4
+max_lr = 5e-5
 optimizer = dict(
     type='AdamW',
     lr=max_lr,
