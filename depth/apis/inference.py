@@ -32,8 +32,8 @@ def init_depther(config, checkpoint=None, device='cuda:0'):
     model = build_depther(config.model, test_cfg=config.get('test_cfg'))
     if checkpoint is not None:
         checkpoint = load_checkpoint(model, checkpoint, map_location='cpu')
-        model.CLASSES = checkpoint['meta']['CLASSES']
-        model.PALETTE = checkpoint['meta']['PALETTE']
+        # model.CLASSES = checkpoint['meta']['CLASSES']
+        # model.PALETTE = checkpoint['meta']['PALETTE']
     model.cfg = config  # save the config in the model for convenience
     model.to(device)
     model.eval()
@@ -64,6 +64,9 @@ class LoadImage:
         results['img'] = img
         results['img_shape'] = img.shape
         results['ori_shape'] = img.shape
+        # Set initial values for default meta_keys
+        results['pad_shape'] = img.shape
+        results['scale_factor'] = 1.0
         return results
 
 
